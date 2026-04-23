@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paper Reading Slides</title>
+    <link rel="stylesheet" href="../node_modules/reveal.js/dist/reset.css" />
+    <link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css" />
+    <link rel="stylesheet" href="../node_modules/reveal.js/dist/theme/white.css" id="theme" />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body>
+    <div class="deck-banner">Paper Reading Deck</div>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          data-markdown="../slides/demo.md"
+          data-separator="^\r?\n---\r?\n$"
+          data-separator-vertical="^\r?\n--\r?\n$"
+          data-separator-notes="^Note:"
+        ></section>
+      </div>
+    </div>
+    <script src="../node_modules/reveal.js/dist/reveal.js"></script>
+    <script src="../node_modules/reveal.js/dist/plugin/markdown.js"></script>
+    <script src="../node_modules/reveal.js/dist/plugin/notes.js"></script>
+    <script src="../node_modules/reveal.js/dist/plugin/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        slideNumber: true,
+        center: true,
+        width: 1280,
+        height: 720,
+        margin: 0.08,
+        plugins: [RevealMarkdown, RevealNotes, RevealHighlight],
+      });
+    </script>
+  </body>
+</html>
