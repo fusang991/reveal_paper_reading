@@ -1,18 +1,21 @@
 {
   "name": "paper_reading",
   "version": "1.0.0",
-  "description": "Markdown to reveal.js slides for paper reading.",
+  "description": "Markdown to Marp slides for paper reading.",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "dev": "python -m http.server 8000",
-    "start": "python -m http.server 8000"
+    "dev": "marp --server slides",
+    "build": "marp \"slides/*.md\" --html --allow-local-files",
+    "pdf": "marp \"slides/*.md\" --pdf --allow-local-files",
+    "pptx": "marp \"slides/*.md\" --pptx --allow-local-files",
+    "start": "npm run dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "reveal.js": "^6.0.1"
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.3.1"
   }
 }

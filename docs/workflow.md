@@ -1,28 +1,62 @@
-# 最基本的工作流
+# Marp 工作流
 
-## 1. 记笔记
+## 1. 写阅读笔记
 
-先在 `notes/` 下新建一个 Markdown 文件，按你的习惯记录论文阅读内容。
-
-例子：
-
-```text
-notes/2026-04-attention.md
-```
-
-## 2. 提炼演示稿
-
-需要汇报时，在 `slides/` 下新建一个演示 Markdown，把笔记整理成适合投屏展示的内容。
+先在 `notes/` 下新建 Markdown 文件，记录论文的完整阅读过程。
 
 例子：
 
 ```text
-slides/2026-04-attention-talk.md
+notes/2026-04-resnet.md
 ```
 
-建议一页只讲一个点，避免长段落。
+这一层不需要考虑排版，只需要把问题、方法、实验、结论和自己的理解写清楚。
 
-## 3. 本地预览
+## 2. 提炼幻灯片
+
+需要汇报时，在 `slides/` 下新建 Marp 文件。
+
+例子：
+
+```text
+slides/2026-04-resnet_marp.md
+```
+
+文件开头使用 Marp front matter：
+
+```md
+---
+marp: true
+theme: default
+paginate: true
+size: 16:9
+math: mathjax
+---
+```
+
+每一页用 `---` 分隔。
+
+## 3. 控制每页内容
+
+建议一页只讲一个重点：
+
+- 背景页：说明问题为什么重要。
+- 方法页：只放核心机制。
+- 实验页：只放最关键的结果。
+- 对比页：用表格压缩信息。
+- 总结页：给出一句明确结论。
+
+封面页和结束页可以使用：
+
+```md
+<!--
+_class: lead
+-->
+```
+
+这会让当前页使用 Marp 的 `lead` 样式。
+
+## 4. 本地预览
 
 在项目根目录运行：
 
@@ -30,40 +64,49 @@ slides/2026-04-attention-talk.md
 npm run dev
 ```
 
-然后打开：
+Marp 会启动本地预览服务器。打开终端显示的地址后，选择 `slides/` 下的 Markdown 文件查看效果。
 
-```text
-http://localhost:8000/src/
+## 5. 导出结果
+
+导出 HTML：
+
+```bash
+npm run build
 ```
 
-如果你想切换要展示的 Markdown，可以修改 `src/index.html` 里的 `data-markdown` 路径。
+导出 PDF：
 
-## 4. 迭代修改
+```bash
+npm run pdf
+```
 
-边看页面边改 `slides/*.md`，刷新浏览器查看效果。
+导出 PPTX：
 
-## 5. Git 同步
+```bash
+npm run pptx
+```
+
+如果只想导出某一个文件，也可以直接运行：
+
+```bash
+npx marp slides/alex_resnet_marp.md -o slides/alex_resnet_marp.html
+```
+
+## 6. Git 同步
 
 完成一个阶段后执行：
 
 ```bash
 git add .
-git commit -m "add new paper slides"
+git commit -m "add marp slides"
 ```
 
-如果你后面接 GitHub，再执行：
+建议提交源文件 `.md`。导出的 `.html`、`.pdf`、`.pptx` 是否提交，可以按实际分享需求决定。
 
-```bash
-git remote add origin <your-repo-url>
-git push -u origin master
-```
+## 7. 旧内容归档
 
-## 6. 导出 PDF
+旧的 reveal.js、Typst 和早期 Markdown 草稿已经移动到 `archive/`：
 
-后面需要导出时，打开：
-
-```text
-http://localhost:8000/src/?print-pdf
-```
-
-再用浏览器打印为 PDF。`reveal.js` 官方推荐使用 Chrome 或 Chromium。
+- `archive/revealjs/`
+- `archive/typst/`
+- `archive/markdown-drafts/`
